@@ -1,0 +1,30 @@
+
+
+body{
+    background: rgb(50,50,50);
+    justify-content: center;
+    >div{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 30vh;
+        margin: auto;
+        margin-top: 40vh;
+        .lj-slider{
+            width:30%;
+            margin-left: 1.5em;
+        }
+    }
+}
+
+.inputs{
+    input{
+        padding: .5em;
+        border: none;
+        border-radius: .3em;
+        color: #444;
+        font-size: 1.1em;
+        width: 200px;
+        text-align: right;
+    }
+}

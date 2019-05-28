@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../dist/css/lj-slider.css">
+    <link rel="stylesheet" href="css/doc.css">
+    <title>LjSlider - Marson Lj</title>
+</head>
+<body>
+    <h1 class='title'>LjSlider - javascript based Slider</h1>
+    <div class="docs">
+        <h1>Getting started</h1>
+        <div>
+            LjSlider is a slider component based in Js, no jQuery needed.
+            Just implement an html template like this one bellow<br>
+        </div>
+        <div class="one">
+            <code>
+                <pre>&lt;div class="myclass"&gt;&lt;/div&gt;</pre>
+            </code>
+            <div>
+
+            </div>
+        </div>
+        <div>
+            Then, no more thing to do than calling the function<br>
+            <code>
+                Ps: If your component don't have the `lj-slider` classname,
+                 it will be added<br>
+                 &nbsp;&nbsp;&nbsp;&nbsp;This was made just for fun<br>
+                 &nbsp;&nbsp;&nbsp;&nbsp;The jQuery plugin is coming soon
+            </code>
+        </div>
+
+        <h1>Basic use</h1>
+        <div class="one">
+            <code>
+                <pre>
+                    ljSlider({
+                        elt: document.querySelector('.myclass'),
+                    });
+                </pre>
+            </code>
+            <div>
+                <div class="sl">
+                    <div class="lj-slider"></div>
+                </div>
+                <div class="return"></div>
+            </div>
+        </div>
+
+        <h1>Changing start</h1>
+        <div class="one">
+            <code>
+                <pre>
+                    ljSlider({
+                        "elt": document.querySelector('.myclass'),
+                        "start": -6
+                    });
+                </pre>
+            </code>
+            <div>
+                <div class="sl">
+                    <div class="lj-slider"></div>
+                </div>
+                <div class="return"></div>
+            </div>
+        </div>
+
+        <h1>Changing steps</h1>
+        <div class="one">
+            <code>
+                <pre>
+                    ljSlider({
+                        "elt": document.querySelector('.myclass'),
+                        "steps": [
+                            {"step": 500, "number": 50}
+                        ]
+                    });
+                </pre>
+            </code>
+            <div>
+                <div class="sl">
+                    <div class="lj-slider"></div>
+                </div>
+                <div class="return"></div>
+            </div>
+        </div>
+
+        <div class="one">
+            <code>
+                <pre>
+                    ljSlider({
+                        "elt": document.querySelector('.myclass'),
+                        "steps": [
+                            {"step": 30, "number": 10},
+                            {"step": 500, "number": 6},
+                            {"step": 50, "number": 5}
+                        ]
+                    });         
+                </pre>
+            </code>
+            <div>
+                <div class="sl">
+                    <div class="lj-slider"></div>
+                </div>
+                <div class="return"></div>
+            </div>
+        </div>
+        <h1>Natural step - different distances between steps</h1>
+        <div class="one">
+            <code>
+                <pre>
+                    ljSlider({
+                        "elt": document.querySelector('.myclass'),
+                        "steps": [
+                            {"step": 30, "number": 10},
+                            {"step": 500, "number": 6},
+                            {"step": 50, "number": 5}
+                        ],
+                        "sameStep": false
+                    }); 
+                </pre>
+            </code>
+            <div>
+                <div class="sl">
+                    <div class="lj-slider"></div>
+                </div>
+                <div class="return"></div>
+            </div>
+        </div>
+        <h1>More pins</h1>
+        <div class="one">
+            <code>
+                <pre>
+                    ljSlider({
+                        "elt": document.querySelector('.myclass'),
+                        "steps": [
+                            {"step": 30, "number": 10},
+                            {"step": 500, "number": 6},
+                            {"step": 50, "number": 5}
+                        ],
+                        "pins": 4
+                    });  
+                </pre>
+            </code>
+            <div>
+                <div class="sl">
+                    <div class="lj-slider"></div>
+                </div>
+                <div class="return"></div>
+            </div>
+        </div>
+        <h1>No green couple linkers</h1>
+        <div class="one">
+            <code>
+                <pre>
+                    ljSlider({
+                        "elt": document.querySelector('.myclass'),
+                        "steps": [
+                            {"step": 30, "number": 10},
+                            {"step": 500, "number": 6},
+                            {"step": 50, "number": 5}
+                        ],
+                        "pins": 2,
+                        "diff": false
+                    }); 
+                </pre>
+            </code>
+            <div>
+                <div class="sl">
+                    <div class="lj-slider"></div>
+                </div>
+                <div class="return"></div>
+            </div>
+        </div>
+        <h1>Changing handler</h1>
+        <div class="one">
+            <code>
+                <pre>
+                    function showVal(vals){
+                        console.log('Values are: ',vals)
+                    }
+
+                    ljSlider({
+                        "elt": document.querySelector('.myclass'),
+                        "steps": [
+                            {"step": 30, "number": 10}
+                        ],
+                        "pins": 2,
+                        "handler": "showVal"
+                    });
+                </pre>
+            </code>
+            <div>
+                <div class="sl">
+                    <div class="lj-slider"></div>
+                </div>
+                <div class="return"></div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div>By Marson Lj</div>
+        <div class="date">2019-05-28</div>
+    </footer>
+</body>
+    <script src="../dist/js/lj-slider.js"></script>
+    <script src="js/doc.js"></script>
+</html>
