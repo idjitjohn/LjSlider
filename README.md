@@ -23,13 +23,10 @@ If you want to take a look at the [documentation](https://idjitjohn.github.io/Lj
     - "data-val" attribute reading
 
 * Version 1.0
+    - White background support
     - Adding handle image
     - Support margin and any parents position
     - Publishing on github
-
-
- - Write MORE Tests
- - Add Night Mode
 
 ## License
 MIT
