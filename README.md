@@ -10,22 +10,22 @@ __LjSlider__ is a simple javascript based plugin that you can easily implement i
 ## Download
 Download the [.zip](https://idjitjohn.github.io/LjSlider) or [.tar.gz](https://idjitjohn.github.io/LjSlider) package
 Jquery version is coming soon
-## Sizes :
-- **2.1Kb** .min.js
-- **700b**  .min.css
-- **2.1Kb** .png (handler)
+## Size :
+- Just **4.6Kb** for the entire minified version
 
 ## Documentation
 If you want to take a look at the [documentation](https://idjitjohn.github.io/LjSlider)
 ## Features:
 * Version 1.1 [Latest]
-    - Moving values to parent `.lj-slider` (not in pins anymore)
-    - Adding setter methods
-    - Automatic value reading
+    - OOP support
+    - Adding setter and getter methods
+    - Add link even with a single pin
+    - Add setter, getter
+    - "data-val" attribute reading
 
 * Version 1.0
     - Adding handle image
-    - Support margin in any parents
+    - Support margin and any parents position
     - Publishing on github
 
 
