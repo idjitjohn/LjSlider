@@ -2,9 +2,8 @@
 By [Marson Lj](https://idjitjohn.github.io/portfolio)
 
 __LjSlider__ is a simple javascript based plugin that you can easily implement in your webpage to have a slider.
-# 
-> A __``slider``__, not a `slideshow`. Like this one below
 #
+> A __``slider``__, not a `slideshow`. Like this one below
 
 ![image of a slider](example/images/slider.png)
 ## Download
