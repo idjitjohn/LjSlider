@@ -46,17 +46,37 @@
         <div class="full-doc">
             <hr>
             <h2>Full documentation</h2>
-            <h1>Attribute</h1>
+            <h1>Attribute and class</h1>
             <ul>
                 <li>
                     <div class="param">
                         <span>data-val</span>
+                        <sup>*attribute</sup>
                     </div>
                     <div>
                         Set the slider default values<br>
-                        Value examples: "3", "12,9,0,-1"<br>
+                        <div class="one">
+                            <code>
+                                <pre>&lt;div class="myclass" data-val="-40.6"&gt;</pre>
+                                <pre>&lt;div class="myclass" data-val="-40.6,7,9,3,0"&gt;</pre>
+                            </code>
+                        </div>
                         * To make it work, don't precise a <strong>values</strong> parameter to your LjSlider parameters.<br>
                         Go to<a href="#value-parameter"> --> Value parameter <--</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="param">
+                        <span>onlight</span>
+                        <sup>*class</sup>
+                    </div>
+                    <div>
+                        Add this class to your elemnt if you're not using a dark background<br>
+                        <div class="one">
+                            <code>
+                                <pre>&lt;div class="myclass onlight"&gt;</pre>
+                            </code>
+                        </div>
                     </div>
                 </li>
             </ul>
