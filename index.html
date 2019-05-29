@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="dist/css/lj-slider.min.css">
+    <link rel="stylesheet" href="example/css/doc.min.css">
+    <title>LjSlider - Marson Lj</title>
+</head>
+<body>
+    <h1 class='title'>LjSlider - javascript based Slider v1.1</h1>
+    <div class="docs">
+        <h1>Getting started</h1>
+        <div>
+            To start implement an html template like this one below<br>
+        </div>
+        <div class="one">
+            <code>
+                <pre>&lt;div class="myclass"&gt;&lt;/div&gt;</pre>
+            </code>
+        </div>
+        <div>
+            Then, no more thing to do than calling the function : <a href="#basic">Basic use</a><br>
+            <code>
+                Ps: The jQuery plugin is coming soon
+            </code>
+        </div>
+
+        <h1 id="basic">Basic use</h1>
+        <div class="one">
+            <code>
+                <pre>
+                    new LjSlider({
+                        elt: document.querySelector('.myclass'),
+                    });
+                </pre>
+            </code>
+            <div>
+                <div class="sl">
+                    <div class="lj-slider"></div>
+                </div>
+                <div class="return"></div>
+            </div>
+        </div>
+        <div class="full-doc">
+            <hr>
+            <h2>Full documentation</h2>
+            <h1>Attribute</h1>
+            <ul>
+                <li>
+                    <div class="param">
+                        <span>data-val</span>
+                    </div>
+                    <div>
+                        Set the slider default values<br>
+                        Value examples: "3", "12,9,0,-1"<br>
+                        * To make it work, don't precise a <strong>values</strong> parameter to your LjSlider parameters.<br>
+                        Go to<a href="#value-parameter"> --> Value parameter <--</a>
+                    </div>
+                </li>
+            </ul>
+            <h1>Parameters</h1>
+            <ul>
+                <li>
+                    <div class="param">
+                        <span>elt</span>
+                        <sup>* Required</sup>
+                    </div>
+                    <div>
+                        The DOM element which is going to be the slider line<br>
+                        Type: DOMElement<br>
+                        Default value: null<br>
+                        Value examples: Go to<a href="#basic"> --> Basic use <--</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="param">
+                        <span>handler</span>
+                        <sup>* Optional</sup>
+                    </div>
+                    <div>
+                        Is a function called when the slider values change, shoould take an ordered array as single parameter<br>
+                        Type: function<br>
+                        Default value: console.log<br>
+                        Value examples: Go to<a href="#handler"> --> Changing handler <--</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="param">
+                        <span>link</span>
+                        <sup>* Optional</sup>
+                    </div>
+                    <div>
+                        Show the green background link if <strong>true</strong> <br>
+                        Type: Boolean<br>
+                        Default value: true<br>
+                    </div>
+                </li>
+                <li>
+                    <div class="param">
+                        <span>pins</span>
+                        <sup>* Optional</sup>
+                    </div>
+                    <div>
+                        THe slider pins (handles) number<br>
+                        Type: Number (int)<br>
+                        Default value: 1<br>
+                        Value examples: 6, 3<br>
+                    </div>
+                </li>
+                <li>
+                    <div class="param">
+                        <span>sameStep</span>
+                        <sup>* Optional</sup>
+                    </div>
+                    <div>
+                        Set a same distance between steps if <strong>true</strong> <br>
+                        Type: Boolean<br>
+                        Default value: true<br>
+                    </div>
+                </li>
+                <li>
+                    <div class="param">
+                        <span>start</span>
+                        <sup>* Optional</sup>
+                    </div>
+                    <div>
+                        The value at the most left position<br>
+                        Type: Number (Natural or decimal)<br>
+                        Default value: 0<br>
+                        Value examples: -1, -9.7, 14000, 200, 3.7<br>
+                    </div>
+                </li>
+                <li>
+                    <div class="param">
+                        <span>steps</span>
+                        <sup>* Optional<</sup>
+                    </div>
+                    <div>
+                        Define the slider behaviour and selectionable values<br> (No order required)<br>
+                        Type: Array of Object{step,number} <br>
+                        Default value: [{step:1,number:10}]<br>
+                        Value examples: Go to<a href="#steps"> --> Changing steps <--</a>
+                    </div>
+                </li>
+                <li id='value-parameter'>
+                    <div class="param">
+                        <span>values</span>
+                        <sup>* Optional</sup>
+                    </div>
+                    <div>
+                        Slider pins initial values (No order required) <br> but have to be one of the slider range values<br>
+                        Type: Number or Array of Number()<br>
+                        Default value: []<br>
+                        Value examples: [6,0,3], 900, -6, -3.1
+                    </div>
+                </li>
+            </ul>
+            <h1>Methods</h1>
+            <ul>
+                <li>
+                    <div class="param">
+                        <span>setValue(...)</span>
+                    </div>
+                    <div>
+                        Dynamicaly set the slider values<br>
+                        Parameter: Array or Number(Natural or decimal)<br>
+                    </div>
+                </li>
+                <li>
+                    <div class="param">
+                        <span>getValue()</span>
+                    </div>
+                    <div>
+                        Return the slider values as an array<br>
+                        Parameter: none<br>
+                    </div>
+                </li>
+                <li>
+                    <div class="param">
+                        <span>change()</span>
+                    </div>
+                    <div>
+                        Reload - Simulate a value change<br>
+                        Parameter: none<br>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div id="examples">
+            <hr>
+            <h2>Some examples</h2>  
+            <h1>Changing start and initial values</h1>
+            <div class="one">
+                <code>
+                    <pre>
+                        new LjSlider({
+                            "elt": document.querySelector('.myclass'),
+                            "start": -6,
+                            "values": 0
+                        });
+                    </pre>
+                </code>
+                <div>
+                    <div class="sl">
+                        <div class="lj-slider"></div>
+                    </div>
+                    <div class="return"></div>
+                </div>
+            </div>
+            <div class="one">
+                <code>
+                    <pre>
+                        new LjSlider({
+                            "elt": document.querySelector('.myclass'),
+                            "start": -6
+                        });
+                    </pre>
+                    <pre>&lt;div class="myclass" data-val="0"&gt;&lt;/div&gt;</pre>
+                </code>
+                <div>
+                    <div class="sl">
+                        <div data-val="0" class="lj-slider"></div>
+                    </div>
+                    <div class="return"></div>
+                </div>
+            </div>
+
+            <h1 id='steps'>Changing steps</h1>
+            <div class="one">
+                <code>
+                    <pre>
+                        new LjSlider({
+                            "elt": document.querySelector('.myclass'),
+                            "steps": [
+                                {"step": 500, "number": 5}
+                            ]
+                        });
+                    </pre>
+                </code>
+                <div>
+                    <div class="sl">
+                        <div class="lj-slider"></div>
+                    </div>
+                    <div class="return"></div>
+                </div>
+            </div>
+
+            <div class="one">
+                <code>
+                    <pre>
+                        new LjSlider({
+                            "elt": document.querySelector('.myclass'),
+                            "steps": [
+                                {"step": 30, "number": 10},
+                                {"step": 500, "number": 6},
+                                {"step": 50, "number": 5}
+                            ],
+                            "values": 800
+                        });         
+                    </pre>
+                </code>
+                <div>
+                    <div class="sl">
+                        <div class="lj-slider"></div>
+                    </div>
+                    <div class="return"></div>
+                </div>
+            </div>
+            <h1>Natural step</h1>
+            <div class="one">
+                <code>
+                    <pre>
+                        new LjSlider({
+                            "elt": document.querySelector('.myclass'),
+                            "steps": [
+                                {"step": 30, "number": 10},
+                                {"step": 500, "number": 6},
+                                {"step": 50, "number": 5}
+                            ],
+                            "sameStep": false,
+                            "values": 800
+                        }); 
+                    </pre>
+                </code>
+                <div>
+                    <div class="sl">
+                        <div class="lj-slider"></div>
+                    </div>
+                    <div class="return"></div>
+                </div>
+            </div>
+            <h1>More pins</h1>
+            <div class="one">
+                <code>
+                    <pre>
+                        new LjSlider({
+                            "elt": document.querySelector('.myclass'),
+                            "steps": [
+                                {"step": 30, "number": 10},
+                                {"step": 500, "number": 6},
+                                {"step": 50, "number": 5}
+                            ],
+                            "pins": 4,
+                            "values": [60, 210, 2800, 3400]
+                        });  
+                    </pre>
+                </code>
+                <div>
+                    <div class="sl">
+                        <div class="lj-slider"></div>
+                    </div>
+                    <div class="return"></div>
+                </div>
+            </div>
+            <h1>No green links</h1>
+            <div class="one">
+                <code>
+                    <pre>
+                        new LjSlider({
+                            "elt": document.querySelector('.myclass'),
+                            "steps": [
+                                {"step": 30, "number": 10},
+                                {"step": 500, "number": 6},
+                                {"step": 50, "number": 5}
+                            ],
+                            "pins": 2,
+                            "link": false,
+                            "values": 1300
+                        }); 
+                    </pre>
+                </code>
+                <div>
+                    <div class="sl">
+                        <div class="lj-slider"></div>
+                    </div>
+                    <div class="return"></div>
+                </div>
+            </div>
+            <h1 id='handler'>Changing handler</h1>
+            <div class="one">
+                <code>
+                    <pre>
+                        function showVal(vals){
+                            console.log('Values are: ',vals)
+                        }
+
+                        new LjSlider({
+                            "elt": document.querySelector('.myclass'),
+                            "steps": [
+                                {"step": 30, "number": 10}
+                            ],
+                            "pins": 2,
+                            "handler": "showVal"
+                        });
+                    </pre>
+                </code>
+                <div>
+                    <div class="sl">
+                        <div class="lj-slider"></div>
+                    </div>
+                    <div class="return"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div>By Marson Lj</div>
+        <div class="date">2019-05-28</div>
+    </footer>
+</body>
+    <script src="dist/js/lj-slider.min.js"></script>
+    <script src="example/js/doc.min.js"></script>
+</html>

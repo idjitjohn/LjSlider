@@ -18,11 +18,11 @@
   z-index: 1;
   width: 15px;
   height: 15px;
-  -webkit-box-shadow: 0 0 1px 1px #fff;
-          box-shadow: 0 0 1px 1px #fff;
+  -webkit-box-shadow: 0 0 1px 1px #fff, 0 0 1px 1px #aaa;
+          box-shadow: 0 0 1px 1px #fff, 0 0 1px 1px #aaa;
   border-radius: 100%;
   background: #fff;
-  background-image: url("../images/im.png");
+  background-image: url("../images/pin.svg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 70% 70%;
@@ -34,9 +34,4 @@
 .lj-slider.onlight {
   -webkit-box-shadow: 0 0 0 1px #aaa;
           box-shadow: 0 0 0 1px #aaa;
-}
-
-.lj-slider.onlight .pin {
-  -webkit-box-shadow: 0 0 1px 1px #aaa;
-          box-shadow: 0 0 1px 1px #aaa;
 }
