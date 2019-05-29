@@ -7,7 +7,7 @@ __LjSlider__ is a simple javascript based plugin that you can easily implement i
 
 ![image of a slider](example/images/slider.png)
 ## Download
-Download the [.zip](https://idjitjohn.github.io/LjSlider) or [.tar.gz](https://idjitjohn.github.io/LjSlider) package
+Download the [.zip](https://idjitjohn.github.io/LjSlider/archive/master.zip) or [.tar.gz](https://idjitjohn.github.io/LjSlider/archive/master.tar.gz) package
 Jquery version is coming soon
 ## Size :
 - Just **4.6Kb** for the entire minified version
