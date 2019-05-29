@@ -30,4 +30,5 @@ If you want to take a look at the [documentation](https://idjitjohn.github.io/Lj
 
 ## License
 MIT
+
 **Free use,  of course Yeah!**
