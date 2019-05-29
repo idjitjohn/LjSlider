@@ -6,7 +6,7 @@ __LjSlider__ is a simple javascript based plugin that you can easily implement i
 > A __``slider``__, not a `slideshow`. Like this one below
 #
 
-![image of a slider]("example/images/slider.png")
+![image of a slider](example/images/slider.png)
 ## Download
 Download the [.zip](https://idjitjohn.github.io/LjSlider) or [.tar.gz](https://idjitjohn.github.io/LjSlider) package
 Jquery version is coming soon
