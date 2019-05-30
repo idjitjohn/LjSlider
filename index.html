@@ -22,7 +22,7 @@
         </div>
         <h1>Getting started</h1>
         <div>
-            To start implement an html template like this one below<br>
+            To start, just implement an html template like this one below<br>
         </div>
         <div class="one">
             <code>
@@ -30,9 +30,9 @@
             </code>
         </div>
         <div>
-            Then, no more thing to do than calling the function : <a href="#basic">Basic use</a><br>
+            Then, no more thing to do than calling LjSlider : <a href="#basic">Basic use</a><br>
             <code>
-                Ps: The jQuery plugin is coming soon
+                Ps: The jQuery plugin and React Component will come soon
             </code>
         </div>
 
@@ -70,7 +70,7 @@
                                 <pre>&lt;div class="myclass" data-val="-40.6,7,9,3,0"&gt;</pre>
                             </code>
                         </div>
-                        * To make it work, don't precise a <strong>values</strong> parameter to your LjSlider parameters.<br>
+                        * To make it work, don't give a <strong>values</strong> parameter to your LjSlider parameters.<br>
                         Go to<a href="#value-parameter"> --> Value parameter <--</a>
                     </div>
                 </li>
@@ -99,7 +99,6 @@
                     <div>
                         The DOM element which is going to be the slider line<br>
                         Type: DOMElement<br>
-                        Default value: null<br>
                         Value examples: Go to<a href="#basic"> --> Basic use <--</a>
                     </div>
                 </li>
@@ -179,7 +178,7 @@
                         <sup>* Optional</sup>
                     </div>
                     <div>
-                        Slider pins initial values (No order required) <br> but have to be one of the slider range values<br>
+                        Slider pins initial values (No order required) <br> but be sure they are in the slider range values<br>
                         Type: Number or Array of Number()<br>
                         Default value: []<br>
                         Value examples: [6,0,3], 900, -6, -3.1
@@ -234,23 +233,6 @@
                 <div>
                     <div class="sl">
                         <div class="lj-slider"></div>
-                    </div>
-                    <div class="return"></div>
-                </div>
-            </div>
-            <div class="one">
-                <code>
-                    <pre>
-                        new LjSlider({
-                            "elt": document.querySelector('.myclass'),
-                            "start": -6
-                        });
-                    </pre>
-                    <pre>&lt;div class="myclass" data-val="0"&gt;&lt;/div&gt;</pre>
-                </code>
-                <div>
-                    <div class="sl">
-                        <div data-val="0" class="lj-slider"></div>
                     </div>
                     <div class="return"></div>
                 </div>
