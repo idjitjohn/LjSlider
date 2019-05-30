@@ -18,7 +18,9 @@ for (let i = 0; i < all.length; i++) {
     for(key in p){
         params[key] = p[key];
     }
+    var n = 0;while(pre.innerHTML[n]==' ') n++;
     new LjSlider(params);
-    pre.innerHTML = pre.innerHTML.replace(/\"/g,'').replace(/ {18}/g,'').replace(/\n *$/g,'');
+    var rx = new RegExp("(^|\n) {"+n+"}","g");
+    pre.innerHTML = pre.innerHTML.replace(/\"/g,'').replace(rx,'$1').replace(/\n *$/g,'');
     par.querySelector('.return').innerHTML = "Values: ";
 }
