@@ -1,5 +1,5 @@
 /**
- * LjSlider v1.1
+ * LjSlider v1.2
  * Licensed under the terms of the MIT license.
  * 
  * By Marson Lj @idjitjohn
@@ -181,13 +181,14 @@ LjSlider.prototype.initSteps = function(){
 //Adding enents to pins
 LjSlider.prototype.addEvents = function(){
     this.initSteps();
-    var that = this, values = this.steps_values.values;
-        steps = this.steps_values.steps;
+    var that = this;
 
     var f_win_handler = function(e) {
         if (!LjSlider.current_pin || e.y === 0) return;
+        var values = LjSlider.current.steps_values.values;
+            steps = LjSlider.current.steps_values.steps;
         //Variables - getting and Computing
-        var val = this.start, pin = LjSlider.current_pin;
+        var val = LjSlider.current.start, pin = LjSlider.current_pin;
             par = parseInt(getComputedStyle(pin.parentNode).width);
         var left = 0, pin_parent = pin.parentNode;
         while(pin_parent){
