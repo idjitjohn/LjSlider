@@ -5,236 +5,243 @@
  * By Marson Lj @idjitjohn
  * https://idjitjohn.github.io/portfolio
  */
-
-
 function LjSlider(data) {
-    //Parameters
-    this.getValues = function(){
-        return this.values;
+    this.init(data);
+}
+
+LjSlider.prototype.initParams = function(data){
+    var params = {
+        elt: null,
+        sameStep: true,
+        start: 0,
+        pins: 1,
+        handler: console.log,
+        link: true,
+        steps: [{ step: 1, number: 10 }],
+        values: []
+    };
+    //Adding data
+    for (key in params){
+        this[key] = (typeof data[key] == 'undefined') ? params[key]:data[key];
     }
-    this.setValues = function(values){
-        if(!Array.isArray(values)) return this.setValues([values]);
-        var a_all = Array.from(this.params.elt.querySelectorAll(".pin"));
-        for (let i = 0; i < values.length && a_all[i]; i++) {
-            var l = this.steps.values.indexOf(values[i]);
-            if(l>=0){
-                a_all[i].style.left = this.steps.steps[l]+'%';
-                a_all[i].dataset.val = values[i];
-                this.change();
-            }
+}
+
+LjSlider.prototype.getValues = function(){
+    return this.values;
+}
+
+LjSlider.prototype.setValues = function(values){
+    if(!Array.isArray(values)) return this.setValues([values]);
+    var a_all = Array.from(this.elt.querySelectorAll(".pin"));
+    for (let i = 0; i < values.length && a_all[i]; i++) {
+        var l = this.steps_values.values.indexOf(values[i]);
+        if(l>=0){
+            a_all[i].style.left = this.steps_values.steps[l]+'%';
+            a_all[i].dataset.val = values[i];
+            LjSlider.current = this;
+            this.change();
+            LjSlider.current = undefined;
         }
     }
-    this.getParams = function(data){
-        var params = {
-            elt: null,
-            sameStep: true,
-            start: 0,
-            pins: 1,
-            handler: console.log,
-            link: true,
-            steps: [{ step: 1, number: 10 }],
-            values: []
-        };
-        for (key in data) params[key] = data[key];
-        return params;
-    }
+}
 
-    this.init = function(data){
-        var params = this.getParams(data);
-        if(!this.checkErrors(params)) return;
-        this.createPins(params);
-        this.createLinks(params);
-        this.params = this.addEvents(params);
-        this.values = [];
-        for (let i = 0; i < params.pins; i++) this.values.push(this.params.start);
+LjSlider.prototype.init = function(data){
+    this.initParams(data);
+    if(!this.checkErrors()) return;
+    this.createPins();
+    this.createLinks();
+    this.addEvents();
 
-        //read initial values
-        var vals = this.params.values;
-        if(!Array.isArray(vals) || vals.length>0)this.setValues(vals);
+    //read initial values
+    var vals = this.values;
+    if(!Array.isArray(vals) || vals.length>0)this.setValues(vals);
+    else{
+        vals = this.elt.dataset.val;
+        if(vals){
+            this.setValues(JSON.parse('['+this.elt.dataset.val+']'));
+            this.elt.removeAttribute('data-val');
+        }
         else{
-            vals = this.params.elt.dataset.val;
-            if(vals){
-                this.setValues(JSON.parse('['+this.params.elt.dataset.val+']'));
-                this.params.elt.removeAttribute('data-val');
-            }
+            for (let i = 0; i < this.pins; i++) this.values.push(this.start);
         }
-        
+    }
+}
+
+LjSlider.prototype.change = function() {
+    var a_all = Array.from(LjSlider.current.elt.querySelectorAll(".pin"));
+    a_all = a_all.map(function(pin) {
+        return {
+            pin: pin,
+            val: pin.dataset.val
+                ? parseFloat(pin.dataset.val)
+                : LjSlider.current.start,
+            x: pin.style.left ? parseFloat(pin.style.left) : 0
+        };
+    }).sort(function(a, b) {
+        return a.val < b.val ? -1 : 1;
+    });
+    LjSlider.current.values = a_all.map(function(v) {
+        return v.val;
+    });
+
+    if (LjSlider.current.link){
+        var rest = LjSlider.current.pins % 2;
+        if(rest){
+            var link = LjSlider.current.elt.querySelector(".diff");
+            link.style.left ="0";
+            link.style.width = a_all[0].x + "%";
+        }
+        for (let i = rest; i < Math.ceil(LjSlider.current.pins / 2); i++) {
+            var link = LjSlider.current.elt.querySelectorAll(".diff")[i + rest];
+            link.style.left = a_all[i * 2 + rest].x + "%";
+            link.style.width = a_all[i * 2 + 1 + rest].x - a_all[i * 2 + rest].x + "%";
+        }
     }
 
-    this.change = function() {
-        var params = this.params;
-        var a_all = Array.from(params.elt.querySelectorAll(".pin"))
-        .map(function(pin) {
-            return {
-                pin: pin,
-                val: pin.dataset.val
-                    ? parseFloat(pin.dataset.val)
-                    : params.start,
-                x: pin.style.left ? parseFloat(pin.style.left) : 0
-            };
-            
-        })
-        .sort(function(a, b) {
-            return a.val < b.val ? -1 : 1;
-        });
-        this.values = a_all.map(function(v) {
+    LjSlider.current.handler(
+        a_all.map(function(v) {
             return v.val;
-        });
+        })
+    );
+}
 
-        if (params.link){
-            var rest = params.pins % 2;
-            if(rest){
-                var link = params.elt.querySelector(".diff");
-                link.style.left ="0";
-                link.style.width = a_all[0].x + "%";
-            }
-            for (let i = rest; i < Math.ceil(params.pins / 2); i++) {
-                var link = params.elt.querySelectorAll(".diff")[i + rest];
-                link.style.left = a_all[i * 2 + rest].x + "%";
-                link.style.width = a_all[i * 2 + 1 + rest].x - a_all[i * 2 + rest].x + "%";
-            }
-        }
-
-        params.handler(
-            a_all.map(function(v) {
-                return v.val;
-            })
+LjSlider.prototype.checkErrors = function(){
+    if (!this.elt.classList) {
+        return console.error(
+            "The passed elt parameter must be a DOMElemnt"
         );
     }
+    else this.elt.classList.add('lj-slider')
+    if (this.pins <= 0) {
+        return console.error("The passed `pins` value is not valid ");
+    }
+    return true;
+}
 
-    this.checkErrors = function(params){
-        if (!params.elt.classList) {
-            return console.error(
-                "The passed elt parameter must be a DOMElemnt"
-            );
+LjSlider.prototype.createPins = function(){
+    for (let i = 0; i < this.pins; i++) {
+        var d = document.createElement("div");
+        d.classList.add("pin");
+        this.elt.appendChild(d);
+    }
+}
+
+LjSlider.prototype.createLinks = function(){
+    if (this.link)
+    for (let i = 0; i < Math.ceil(this.pins / 2); i++) {
+        var d = document.createElement("div");
+        d.classList.add("diff");
+        this.elt.appendChild(d);
+    }
+}
+
+LjSlider.prototype.getMinStep = function(){
+    return this.steps.reduce(function(prev, step) {
+        return step.step < prev ? step.step : prev;
+    }, this.steps[0].step);
+}
+
+/** 
+ * Computing all possible steps
+ * return all steps in percentage in an array
+*/
+LjSlider.prototype.initSteps = function(){
+    var minstep = this.getMinStep();
+
+    this.steps = this.steps.map(function(step) {
+        step["multiply"] = this.sameStep ? 1 : step.step / minstep;
+        return step;
+    });
+
+    //Taking all steps in percentage
+    var onestep =
+        100 /
+        this.steps.reduce(function(prev, step) {
+            return prev + step.number * step.multiply;
+        }, 0);
+    var steps = [0];
+    var values = [this.start];
+    this.steps.reduce(
+        function(prev, step) {
+            var v = prev[1];
+            prev = prev[0];
+            for (let i = 1; i <= step.number; i++) {
+                steps.push(prev + onestep * step.multiply * i);
+                values.push(v + step.step * i);
+            }
+            prev = prev + onestep * step.multiply * step.number;
+            v = v + step.step * step.number;
+            return [prev, v];
+        },
+        [0, this.start]
+    );
+    this.steps_values = {steps:steps,values:values};
+}
+
+//Adding enents to pins
+LjSlider.prototype.addEvents = function(){
+    this.initSteps();
+    var that = this, values = this.steps_values.values;
+        steps = this.steps_values.steps;
+
+    var f_win_handler = function(e) {
+        if (!LjSlider.current_pin || e.y === 0) return;
+        //Variables - getting and Computing
+        var val = this.start, pin = LjSlider.current_pin;
+            par = parseInt(getComputedStyle(pin.parentNode).width);
+        var left = 0, pin_parent = pin.parentNode;
+        while(pin_parent){
+            left += pin_parent.offsetLeft;
+            pin_parent = pin_parent.offsetParent;
         }
-        else params.elt.classList.add('lj-slider')
-        if (params.pins <= 0) {
-            return console.error("The passed `pins` value is not valid ");
-        }
-        return true;
-    }
+        var x = (e.touches ? e.touches[0].clientX : e.clientX) - left ;
 
-    this.createPins = function(params){
-        for (let i = 0; i < params.pins; i++) {
-            var d = document.createElement("div");
-            d.classList.add("pin");
-            d.setAttribute("draggable", "true");
-            params.elt.appendChild(d);
-        }
-    }
+        //if x is out of bounds
+        if (x > par) x = par;
+        else if (x < 0) x = 0;
 
-    this.createLinks = function(params){
-        if (params.link)
-        for (let i = 0; i < Math.ceil(params.pins / 2); i++) {
-            var d = document.createElement("div");
-            d.classList.add("diff");
-            params.elt.appendChild(d);
-        }
-    }
-
-    this.getMinStep = function(params){
-        return params.steps.reduce(function(prev, step) {
-            return step.step < prev ? step.step : prev;
-        }, params.steps[0].step);
-    }
-
-    /** 
-     * Computing all possible steps
-     * return all steps in percentage in an array
-    */
-    this.getSteps = function(params){
-        var minstep = this.getMinStep(params);
-
-        params.steps = params.steps.map(function(step) {
-            step["multiply"] = params.sameStep ? 1 : step.step / minstep;
-            return step;
-        });
-
-        //Taking all steps in percentage
-        var onestep =
-            100 /
-            params.steps.reduce(function(prev, step) {
-                return prev + step.number * step.multiply;
-            }, 0);
-        var steps = [0];
-        var values = [params.start];
-        params.steps.reduce(
-            function(prev, step) {
-                var v = prev[1];
-                prev = prev[0];
-                for (let i = 1; i <= step.number; i++) {
-                    steps.push(prev + onestep * step.multiply * i);
-                    values.push(v + step.step * i);
-                }
-                prev = prev + onestep * step.multiply * step.number;
-                v = v + step.step * step.number;
-                return [prev, v];
-            },
-            [0, params.start]
-        );
-        return {steps:steps,values:values};
-    }
-
-    //Adding enents to pins
-    this.addEvents = function(params){
-        var steps = this.steps = this.getSteps(params), that = this;
-        var values = steps.values;
-        steps = steps.steps;
-            
-        params.elt.querySelectorAll(".pin").forEach(function(pin) {
-            pin.addEventListener(
-                "dragstart",
-                function(e) {
-                    //No ghost dragging
-                    e.dataTransfer.setDragImage(document.createElement("div"),0,0);
-                },
-                false
-            );
-            pin.addEventListener("drag", function(e) {
-                if (e.y === 0) return;
-                //Variables - getting and Computing
-                var val = params.start,
-                    par = parseInt(getComputedStyle(e.target.parentNode).width);
-                var left = 0;
-                var pprr = e.target.parentNode;
-                while(pprr){
-                    left += pprr.offsetLeft;
-                    pprr = pprr.offsetParent;
-                }
-                var x = e.clientX - left ;
-    
-                //if x is out of bounds
-                if (x > par) x = par;
-                else if (x < 0) x = 0;
-    
-                //Respect steps - simulate jumping
-                x = (x * 100) / par;
-                for (var i = 0; i < steps.length; i++) {
-                    if (steps[i + 1] >= x) {
-                        if (steps[i] < x) {
-                            if (
-                                Math.abs(x - steps[i]) < Math.abs(x - steps[i + 1])
-                            ) {
-                                x = steps[i];
-                                val = values[i];
-                            } else {
-                                x = steps[i + 1];
-                                val = values[i + 1];
-                            }
-                        }
-                        break;
+        //Respect steps - simulate jumping
+        x = (x * 100) / par;
+        for (var i = 0; i < steps.length; i++) {
+            if (steps[i + 1] >= x) {
+                if (steps[i] < x) {
+                    if (
+                        Math.abs(x - steps[i]) < Math.abs(x - steps[i + 1])
+                    ) {
+                        x = steps[i];
+                        val = values[i];
+                    } else {
+                        x = steps[i + 1];
+                        val = values[i + 1];
                     }
                 }
-                //moving!
-                if (parseFloat(e.target.dataset.val) != val) {
-                    e.target.style.left = x + "%";
-                    e.target.dataset.val = val;
-                    that.change();
-                }
-            }, false);
-        });
-        return params;
+                break;
+            }
+        }
+        //moving!
+        if (parseFloat(pin.dataset.val) != val) {
+            pin.style.left = x + "%";
+            pin.dataset.val = val;
+            that.change();
+        }
     }
-    this.init(data);
+    if( typeof LjSlider.window_handled == 'undefined' ) {
+        LjSlider.window_handled = true;
+        var deactivate = function() {
+            LjSlider.current_pin = undefined;
+            LjSlider.current = undefined;
+        }
+        window.addEventListener("mousemove", f_win_handler, false);
+        window.addEventListener("touchmove", f_win_handler, false);
+        window.addEventListener("mouseup",deactivate,false);
+        window.addEventListener("touchend",deactivate,false);
+    }
+    var activate = function(e) {
+        LjSlider.current = that;
+        LjSlider.current_pin = e.target;
+    }
+    this.elt.querySelectorAll(".pin").forEach(function(pin) {
+        pin.addEventListener("mousedown",activate,false);
+        pin.addEventListener("touchstart",activate,false);
+    });
 }

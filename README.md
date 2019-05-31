@@ -15,7 +15,11 @@ Jquery version is coming soon
 ## Documentation
 If you want to take a look at the [documentation](https://idjitjohn.github.io/LjSlider)
 ## Features:
-* Version 1.1 [Latest]
+* Version 1.2 [Latest]
+    - Fixing dragging problem on firefox
+    - Mobile support
+
+* Version 1.1
     - OOP support
     - Adding setter and getter methods
     - Add link even with a single pin

@@ -13,10 +13,20 @@ body{
     }
     h1.title{
         text-align: center;
+        color: rgb(52,52,52);
+        margin: 0;
+        padding: 1em 0;
+        margin-bottom: 1em;
+        text-shadow: 0 0 2px #aaa;
+        box-shadow: 0 0 0 1px #555;
     }
     .docs{
         width: 70%;
         margin: 0 auto;
+        overflow: hidden;
+        @media screen and (max-width:380px){
+            width: 90%;
+        }
         h1{
             font-weight: normal;
             text-decoration: underline;
@@ -57,12 +67,21 @@ body{
         .one{
             display: flex;
             position: relative;
+            @media screen and (max-width: 380px){
+                flex-direction: column;
+            }
             code{
                 pre{
+                    margin-left: 1px;
                     box-shadow: 0 0 0 1px #555;
                     border-radius: .2em;
                     padding: .5em;
                     line-height: 1.7em;
+                    @media screen and (max-width:380px){
+                        max-width: 95%;
+                        word-wrap: break-word;
+                        overflow-x: auto;
+                    }
                 }
             }
             >div{
@@ -74,6 +93,11 @@ body{
                     display: flex;
                     align-items: center;
                     justify-content: center;
+                    @media screen and (max-width: 380px){
+                        &.sl{
+                            padding: 1em 0;
+                        }
+                    }
                 }
             }
         }

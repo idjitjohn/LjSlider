@@ -17,11 +17,25 @@ body a:hover {
 
 body h1.title {
   text-align: center;
+  color: #343434;
+  margin: 0;
+  padding: 1em 0;
+  margin-bottom: 1em;
+  text-shadow: 0 0 2px #aaa;
+  -webkit-box-shadow: 0 0 0 1px #555;
+          box-shadow: 0 0 0 1px #555;
 }
 
 body .docs {
   width: 70%;
   margin: 0 auto;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 380px) {
+  body .docs {
+    width: 90%;
+  }
 }
 
 body .docs h1 {
@@ -81,12 +95,30 @@ body .docs .one {
   position: relative;
 }
 
+@media screen and (max-width: 380px) {
+  body .docs .one {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
 body .docs .one code pre {
+  margin-left: 1px;
   -webkit-box-shadow: 0 0 0 1px #555;
           box-shadow: 0 0 0 1px #555;
   border-radius: .2em;
   padding: .5em;
   line-height: 1.7em;
+}
+
+@media screen and (max-width: 380px) {
+  body .docs .one code pre {
+    max-width: 95%;
+    word-wrap: break-word;
+    overflow-x: auto;
+  }
 }
 
 body .docs .one > div {
@@ -115,6 +147,12 @@ body .docs .one > div > div {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+@media screen and (max-width: 380px) {
+  body .docs .one > div > div.sl {
+    padding: 1em 0;
+  }
 }
 
 body .lj-slider {
